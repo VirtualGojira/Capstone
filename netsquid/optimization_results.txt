@@ -1,0 +1,24 @@
+=== Optimization Results ===
+
+Stage 1: Broad Exploration
+  Iterations: 100
+  Best Objective: 65.80
+  Best Parameters:
+    Distance: 65.80m
+    Timeout: 2.84e+05ns
+    Max Retries: 9
+
+Stage 2: Focused Exploitation
+  Iterations: 150
+  Best Objective: 119.22
+  Best Parameters:
+    Distance: 119.22m
+    Timeout: 3.11e+06ns
+    Max Retries: 10
+
+=== Convergence Details ===
+  Total Iterations: 250
+  Final Objective: 119.22
+  Optimal Distance: 119.22m
+  Optimal Timeout: 3.11e+06ns
+  Optimal Max Retries: 10
