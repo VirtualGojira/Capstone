@@ -1,0 +1,20 @@
+Variant: firesaber
+
+SABER_INDCPA_PUBLICKEYBYTES=1312
+SABER_INDCPA_SECRETKEYBYTES=1664
+SABER_PUBLICKEYBYTES=1312
+SABER_SECRETKEYBYTES=3040
+SABER_KEYBYTES=32
+SABER_HASHBYTES=32
+SABER_BYTES_CCA_DEC=1472
+
+Repeat is : 1000
+Average times key_pair (cycles): 	 138992 
+Average times enc (cycles): 	 155305 
+Average times dec (cycles): 	 159591 
+Average times key_pair (seconds): 	 0.000047928 
+Average times enc (seconds): 	 0.000053553 
+Average times dec (seconds): 	 0.000055031 
+Average times kp mv: 	 0 
+Average times cl mv: 	 0 
+Average times sample_kp: 	 0 

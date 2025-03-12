@@ -1,0 +1,20 @@
+Variant: SABER
+
+SABER_INDCPA_PUBLICKEYBYTES=992
+SABER_INDCPA_SECRETKEYBYTES=1248
+SABER_PUBLICKEYBYTES=992
+SABER_SECRETKEYBYTES=2304
+SABER_KEYBYTES=32
+SABER_HASHBYTES=32
+SABER_BYTES_CCA_DEC=1088
+
+Repeat is : 1000
+Average times key_pair (cycles): 	 89701 
+Average times enc (cycles): 	 109345 
+Average times dec (cycles): 	 101548 
+Average times key_pair (seconds): 	 0.000030931 
+Average times enc (seconds): 	 0.000037705 
+Average times dec (seconds): 	 0.000035017 
+Average times kp mv: 	 0 
+Average times cl mv: 	 0 
+Average times sample_kp: 	 0 

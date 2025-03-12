@@ -1,0 +1,5 @@
+KEM Variant | Family | KeyGen Time (s) | Encap Time (s) | Decap Time (s)
+----------------------------------------------------------------------
+Kyber512 | Kyber | 0.000013 | 0.000015 | 0.000011
+sntrup761 | NTRU | 0.000309 | 0.000016 | 0.000016
+Classic-McEliece-348864f | McEliece | 0.029218 | 0.000069 | 0.000053

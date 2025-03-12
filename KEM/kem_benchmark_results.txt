@@ -1,0 +1,12 @@
+KEM Variant | Family | KeyGen Time (s) | Encap Time (s) | Decap Time (s)
+----------------------------------------------------------------------
+Kyber512 | Kyber | 0.000012 | 0.000015 | 0.000011
+Kyber768 | Kyber | 0.000017 | 0.000021 | 0.000016
+Kyber1024 | Kyber | 0.000022 | 0.000028 | 0.000021
+sntrup761 | NTRU | 0.000301 | 0.000015 | 0.000016
+FrodoKEM-640-AES | FrodoKEM | 0.000284 | 0.000398 | 0.000375
+FrodoKEM-640-SHAKE | FrodoKEM | 0.000902 | 0.000983 | 0.000960
+FrodoKEM-976-AES | FrodoKEM | 0.000545 | 0.000754 | 0.000706
+FrodoKEM-976-SHAKE | FrodoKEM | 0.001939 | 0.002072 | 0.002028
+FrodoKEM-1344-AES | FrodoKEM | 0.000928 | 0.001270 | 0.001209
+FrodoKEM-1344-SHAKE | FrodoKEM | 0.003469 | 0.003667 | 0.003605

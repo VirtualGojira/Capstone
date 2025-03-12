@@ -1,0 +1,2 @@
+KEM Variant,Family,KeyGen Time (s),Encap Time (s),Decap Time (s)
+sntrup761,NTRU,0.00031009492500015765,1.6878965004252678e-05,1.65568560050815e-05
