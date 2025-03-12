@@ -1,0 +1,4 @@
+KEM Variant,KeyGen Time (s),Encap Time (s),Decap Time (s)
+firesaber,4.7928e-05,5.3553e-05,5.5031e-05
+SABER,3.0931e-05,3.7705e-05,3.5017e-05
+LightSaber,1.7775e-05,1.9496e-05,1.9688e-05

@@ -1,0 +1,20 @@
+Variant: LightSaber
+
+SABER_INDCPA_PUBLICKEYBYTES=672
+SABER_INDCPA_SECRETKEYBYTES=832
+SABER_PUBLICKEYBYTES=672
+SABER_SECRETKEYBYTES=1568
+SABER_KEYBYTES=32
+SABER_HASHBYTES=32
+SABER_BYTES_CCA_DEC=736
+
+Repeat is : 1000
+Average times key_pair (cycles): 	 51547 
+Average times enc (cycles): 	 56539 
+Average times dec (cycles): 	 57096 
+Average times key_pair (seconds): 	 0.000017775 
+Average times enc (seconds): 	 0.000019496 
+Average times dec (seconds): 	 0.000019688 
+Average times kp mv: 	 0 
+Average times cl mv: 	 0 
+Average times sample_kp: 	 0 
