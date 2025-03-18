@@ -1,5 +1,6 @@
 import netsquid as ns
 import numpy as np
+import matplotlib.pyplot as plt
 from netsquid.nodes import Node, Network
 from netsquid.components import QuantumChannel, ClassicalChannel, Message
 from netsquid.components.models.delaymodels import FibreDelayModel
@@ -8,11 +9,11 @@ from netsquid.protocols import Protocol
 from netsquid.qubits import qubitapi as qapi
 
 # Parameters (fixed)
-SPEED_LIGHT_VACUUM = 300000  # km/s (3e8 m/s)
+SPEED_LIGHT_VACUUM = 300000  # km/s
 FIBRE_ATTENUATION_DB_PERKM = 0.14
 FIBRE_REFRACTIVE_INDEX = 1.2
-DISTANCE = 100  # in km
-ENDTIME = 1e10 #ns
+DISTANCE = 100  # km
+ENDTIME = 1e10  # ns
 
 def create_network():
     network = Network("BB84 Network")
@@ -56,7 +57,7 @@ class AliceProtocol(Protocol):
             self.node.ports["qout"].tx_output(Message(qubit))
             self.sent += 1
             yield self.await_timer(1)
-        
+        # Send the chosen bases over the classical channel.
         self.node.ports["cout"].tx_output(Message(self.bases.tolist()))
 
 class BobProtocol(Protocol):
@@ -83,7 +84,7 @@ class BobProtocol(Protocol):
             self.measurements.append(result)
             self.received_indices.append(self.received)
             self.received += 1
-        
+        # Receive Alice's bases via the classical channel.
         yield self.await_port_input(self.node.ports["cin"])
         message = self.node.ports["cin"].rx_input()
         self.alice_bases = np.array(message.items[0])
@@ -102,6 +103,7 @@ def run_bb84(num_bits):
     
     ns.sim_run(end_time=ENDTIME)
 
+    # Identify indices where both used the same basis.
     match_indices = np.where(alice_protocol.bases == bob_protocol.bases)[0]
     valid_match_indices = [i for i in match_indices if i in bob_protocol.received_indices]
 
@@ -111,17 +113,39 @@ def run_bb84(num_bits):
     key_match = sifted_alice == sifted_bob
     return key_match, len(sifted_alice)
 
-def avg_runs(bit_sizes):
+def avg_runs(bit_sizes, num_runs=100):
+    avg_key_lengths = []
     for n_bits in bit_sizes:
-        count = 0
         total_key_length = 0
-        for _ in range(100):
+        match_count = 0
+        for _ in range(num_runs):
             key_match, key_length = run_bb84(n_bits)
             total_key_length += key_length
             if key_match:
-                count += 1
-        avg_key_length = total_key_length / 100
-        print(f"For {n_bits} bits: Keys matched in {count} out of 100 runs, Average key length: {avg_key_length}")
+                match_count += 1
+        avg_key_length = total_key_length / num_runs
+        avg_key_lengths.append(avg_key_length)
+        print(f"For {n_bits} bits: Keys matched in {match_count} out of {num_runs} runs, Average key length: {avg_key_length}")
+    return avg_key_lengths
 
+# Define the different bit sizes to simulate.
 bit_sizes = [2, 4, 8, 16, 32, 64, 128, 256]
-avg_runs(bit_sizes)
+
+# Run the simulations and collect the average key lengths.
+avg_key_lengths = avg_runs(bit_sizes)
+
+# Calculate the percentage (key length / total bits) * 100 for each variant.
+avg_percentages = [(avg_length / n_bits) * 100 for avg_length, n_bits in zip(avg_key_lengths, bit_sizes)]
+
+# Create categorical labels for the variants.
+variant_labels = [f"{n_bits} bits" for n_bits in bit_sizes]
+
+# Plot the results as a bar graph with linear y-scale.
+plt.figure(figsize=(10, 6))
+plt.bar(variant_labels, avg_percentages, color='skyblue', edgecolor='black')
+plt.xlabel("Variants (Number of bits sent)")
+plt.ylabel("Key Generation Efficiency (%)")
+plt.title("Percentage of Bits Remaining in Key vs. Variants of Number of Bits Sent in BB84 Protocol")
+plt.grid(axis='y', linestyle="--", linewidth=0.5)
+plt.savefig(f"naive_efficiency.eps", dpi=600, format='eps')
+plt.show()
