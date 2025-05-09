@@ -1,0 +1,2 @@
+chmod +x 30_genetic.sh
+./30_genetic.sh
